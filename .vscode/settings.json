@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "map": "cpp",
+        "vector": "cpp",
+        "__functional_base": "cpp",
+        "__locale": "cpp",
+        "__split_buffer": "cpp",
+        "bitset": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "string": "cpp",
+        "__node_handle": "cpp",
+        "sstream": "cpp",
+        "unordered_map": "cpp",
+        "queue": "cpp"
+    }
+}
