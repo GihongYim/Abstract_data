@@ -13,6 +13,7 @@
         "__node_handle": "cpp",
         "sstream": "cpp",
         "unordered_map": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "__config": "cpp"
     }
 }
