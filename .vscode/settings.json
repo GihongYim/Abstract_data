@@ -26,6 +26,7 @@
         "list": "cpp",
         "locale": "cpp",
         "set": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "iterator": "cpp"
     }
 }
