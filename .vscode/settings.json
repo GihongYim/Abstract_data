@@ -15,6 +15,17 @@
         "unordered_map": "cpp",
         "queue": "cpp",
         "__config": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "__functional_03": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "deque": "cpp",
+        "__memory": "cpp",
+        "memory_resource": "cpp",
+        "functional": "cpp",
+        "list": "cpp",
+        "locale": "cpp",
+        "set": "cpp",
+        "tuple": "cpp"
     }
 }
