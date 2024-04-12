@@ -37,26 +37,51 @@ protected:
 template<class T, class Allocator>
 class vector_base : public vector_alloc_base<T, Allocator>
 {
-protected:
-    
-
 public:
+typedef vector_alloc_base<T, Allocator> _base;
+    vector_base(const allocator_type& __a) : _base(__a) {}
+    vector_base(size_t __n, const allocator_type& __a) : _base(__a) {
+        _start = _allocate(__n);
+        _finish = _start;
+        _end_of_storage = _start + __n;
+    }
 
+    ~vector_base() {
+        _deallocate(_start, _end_of_storage - _start);
+    }
 };
+
+
 template<class T, class Allocator=std::allocator<T>>
-class vector : public vecto_base<T, Allocator>
+class vector : public vector_base<T, Allocator>
 {
 protected:
 
 public:
     typedef T                               value_type;
-    typedef std::size_t                     size_type;
-    typedef std::ptrdiff_t                  difference_type;
+    typedef value_type*                     pointer;
+    typedef const value_type*               const_pointer;
+    typedef iterator<pointer, vector<T, Allocator> >    
+                                            iterator;
+    typedef iterator<const_pointer, vector<T, Allocator> >
+                                            const_iterator;
     typedef value_type&                     reference;
     typedef const value_type&               const_reference;
-    typedef Allocator::pointer              pointer;
-    typedef Allocator::const_pointer        const_pointer;
-    typedef iterator
+    typedef std::size_t                     size_type;
+    typedef std::ptrdiff_t                  difference_type;
+
+    typedef typename _base::allocator_type allocator_type;
+    allocator_type get_allocator() const { return _base::get_allocator();}
+
+    typedef reverse_iterator<const iterator> const_reverse_iterator;
+    typedef reverse_iterator<iterator> reverse_iterator;
+
+protected:
+    using _base::allocate;
+    using _base::dallocate;
+    using _base::_start;
+    using _base::_finish;
+    using _base::_end_of_storage;
 };
 
 }
