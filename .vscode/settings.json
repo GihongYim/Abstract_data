@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.hpp": "cpp",
         "map": "cpp",
         "vector": "cpp",
         "__functional_base": "cpp",
@@ -27,6 +28,12 @@
         "locale": "cpp",
         "set": "cpp",
         "tuple": "cpp",
-        "iterator": "cpp"
-    }
+        "iterator": "cpp",
+        "*.tpp": "cpp",
+        "__bit_reference": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp"
+    },
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++"
 }
