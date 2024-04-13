@@ -17,6 +17,4 @@ namespace ft
         typedef _Pointer    pointer;
         typedef _Reference  reference;
     };
-    
-
 }
