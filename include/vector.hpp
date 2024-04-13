@@ -10,9 +10,6 @@ public:
         allocator_type;
     allocator_type  get_allocator() {return _allocator;}
 
-    // vector_alloc_base() { }
-    // vector_alloc_base(allocator_type& __a) _allocator(__a)
-
     vector_alloc_base(const allocator_type& __a)
         : _allocator(__a), _start(0), _finish(0), _end_of_storage(0)
     {}
@@ -87,14 +84,66 @@ protected:
     using _base::_end_of_storage;
 
 public:
-    explicit vector(const Allocator& alloc=allcator_type()) 
-        : _base(alloc)
-    {
-        _start = 0;
-        _finish = 0;
-        _end_of_storage = 0;
+
+    iterator begin() {
+         return iterator(_start);
+    }
+    const_iterator begin() const {
+         return const_iterator(_start);
+    }
+    iterator end() {
+        return iterator(_finish);
+    }
+    const_iterator end() const {
+        return const_iterator(_finish);
+    }
+    reverse_iterator rbegin() {
+        return reverse_iterator(end());
+    }
+    const_reverse_iterator rbegin() const {
+        return const_reverse_iterator(end());
+    }
+    iterator rend() {
+        return iterator(begin());
+    }
+    const_iterator rend() const {
+        return const_iterator(begin());
+    }
+    size_type size() const {
+        return size_type(end() - begin());
     }
 
+    size_type capacity() const {
+        return size_type(const_iterator(_end_of_storage) - begin());
+    }
+
+    bool empty() const {
+        return begin() == end();
+    }
+
+    reference   operator[](size_type __n) {
+        return *(begin() + __n);
+    }
+
+    const_reference   operator[](size_type __n) const {
+        return *(begin() + __n);
+    }
+
+    reference at(size_type __n) {
+        if (__n >= this->size())
+            throw "vector: out of range";
+        return (*this)[__n];
+    }
+
+    const_reference at(size_type __n) const {
+        if (__n >= this->size())
+            throw "vector: out of range";
+        return (*this)[__n];
+    }
+
+    explicit vector(const Allocator& alloc=allcator_type()) 
+        : _base(alloc) { }
+    
     explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator()) 
         : _base(alloc)
     {
@@ -109,7 +158,8 @@ public:
         _end_of_storage = _start + count;
     }
     template<class InputIt>
-    vector(InputIt first, InputIt last, const Allocator& alloc = Allocator()) {
+        vector(InputIt first, InputIt last, const Allocator& alloc = Allocator())
+            :_base(alloc) {
 
     }
 
@@ -130,6 +180,7 @@ public:
         return newVector;
     }
 
+    
 
 };
 
