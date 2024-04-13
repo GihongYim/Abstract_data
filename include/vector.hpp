@@ -8,10 +8,11 @@ class vector_alloc_base
 public:
     typedef typename _Alloc_traits<T, Allocator>::allocator_type
         allocator_type;
-    vector_alloc_base() { }
-    vector_alloc_base(allocator_type& __a) _allocator(__a)
-
     allocator_type  get_allocator() {return _allocator;}
+
+    // vector_alloc_base() { }
+    // vector_alloc_base(allocator_type& __a) _allocator(__a)
+
     vector_alloc_base(const allocator_type& __a)
         : _allocator(__a), _start(0), _finish(0), _end_of_storage(0)
     {}
@@ -55,7 +56,9 @@ typedef vector_alloc_base<T, Allocator> _base;
 template<class T, class Allocator=std::allocator<T>>
 class vector : public vector_base<T, Allocator>
 {
-protected:
+private:
+    typedef vector_base<T, Allocator> _base;
+    typedef vector<T, Allocator> vector_type;
 
 public:
     typedef T                               value_type;
@@ -85,7 +88,7 @@ protected:
 
 public:
     vector() {
-        
+
     }
 
     explicit vector(const Allocator& alloc) {
