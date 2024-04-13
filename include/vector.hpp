@@ -82,6 +82,39 @@ protected:
     using _base::_start;
     using _base::_finish;
     using _base::_end_of_storage;
+
+public:
+    vector() {
+        
+    }
+
+    explicit vector(const Allocator& alloc) {
+
+    }
+
+    explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator()) {
+
+    }
+
+    explicit vector(size_type count) {
+
+    }
+    template<class InputIt>
+    vector(InputIt first, InputIt last, const Allocator& alloc = Allocator()) {
+
+    }
+
+    vector(const vector& other ); {
+
+    }
+
+    vector(vector&& other) {
+
+    }
+
+    ~vector() {}
+
+
 };
 
 }
