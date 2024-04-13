@@ -80,42 +80,55 @@ public:
     typedef reverse_iterator<iterator> reverse_iterator;
 
 protected:
-    using _base::allocate;
-    using _base::dallocate;
+    using _base::_allocate;
+    using _base::_dallocate;
     using _base::_start;
     using _base::_finish;
     using _base::_end_of_storage;
 
 public:
-    vector() {
-
+    explicit vector(const Allocator& alloc=allcator_type()) 
+        : _base(alloc)
+    {
+        _start = 0;
+        _finish = 0;
+        _end_of_storage = 0;
     }
 
-    explicit vector(const Allocator& alloc) {
-
-    }
-
-    explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator()) {
-
+    explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator()) 
+        : _base(alloc)
+    {
+        _start = _allocate(count);
+        _finish = _start;
+        _end_of_storage = _start + count;
     }
 
     explicit vector(size_type count) {
-
+        _start = _allocate(count);
+        _finish = _start;
+        _end_of_storage = _start + count;
     }
     template<class InputIt>
     vector(InputIt first, InputIt last, const Allocator& alloc = Allocator()) {
 
     }
 
-    vector(const vector& other ); {
-
+    vector(const vector& other); {
+        //iterator needed
     }
 
     vector(vector&& other) {
-
+        //iterator needed
     }
 
-    ~vector() {}
+    ~vector() {
+        _deallocate(_start, _end_of_storage - _start);
+    }
+
+    vector& operator=(const vector& other) {
+        vector newVector = vector(other);
+        return newVector;
+    }
 
 
 };
