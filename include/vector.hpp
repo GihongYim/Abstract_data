@@ -104,6 +104,48 @@ public:
 
     }
 
+    reference at(size_type pos) {
+        if (pos >= this->size()) 
+            throw out_of_index;
+        return *(_start + pos);
+    }
+
+    const_reference at(size_type pos) const{
+        if (pos >= this->size()) 
+            throw out_of_index;
+        return *(_start + pos);
+    }
+    reference operator[](size_type pos) {
+        if (pos >= this->size()) 
+            throw "out_of_index";
+        return *(_start + pos);
+    }
+
+    reference front() {
+        if (_start) {
+            return *(_start);
+        } else {
+            throw "vector is empty";
+        }
+    }
+
+    const_reference front() {
+        if (_start) {
+            return *(_start);
+        } else {
+            throw "vector is empty";
+        }   
+    }
+    const_reference operator[](size_type pos) const {
+        if (pos >= this->size()) 
+            throw out_of_index;
+        return *(_start + pos);
+    }
+
+
+    size_t  size() {
+        return (_end_of_storage - _start);
+    }
     
 };
 }
