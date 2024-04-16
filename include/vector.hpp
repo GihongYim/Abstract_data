@@ -68,8 +68,12 @@ public:
     {
 
     }
-
     
+    ~vector()
+    {
+        _alloc.deallocate(_start, _end_of_storage - _start);
+    }
+
 
 };
 }
