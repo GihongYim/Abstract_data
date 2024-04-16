@@ -78,6 +78,32 @@ public:
         _alloc.deallocate(_start, _end_of_storage - _start);
     }
 
+    vector& operator=(const vector& other)
+    {
+        _new_vector = vector(other.size());
+        for (int i = 0; i < other.size(); i++) {
+            _new_vector[i] = other[i];
+        }
+    }
+    void assign(size_type count, count T& value)
+    {
+        if (_start) {
+            _alloc.deallocate(_start, _end_of_storage - _start);
+        }
+        _start = _alloc.allocate(count);
+        _finish = _start;
+        _end_of_storage = _start + count;
+        for (int i = 0; i < count; i++) {
+            *(_start + i) = value;
+        }
+    }
 
+    template<class InputIt>
+    void assign(InputIt first, InputIt last) 
+    {
+
+    }
+
+    
 };
 }
