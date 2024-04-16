@@ -25,6 +25,10 @@ private:
     pointer             _end_of_storage;
 public:
 
+    allocator_type get_allocator() 
+    {
+        return _allocator;
+    }
     vector() 
     : _allocator(Allocator), _start(0), _finish(0), _end_of_storage(0)
     { }
