@@ -40,9 +40,29 @@ public:
     vector(size_type count, const T& value = T(), const Allocator&alloc = Allocator())
     : _allocator(alloc)
     {
-        _start = _alloc.allocate(count, )
+        _allocator = alloc;
+        _start = _alloc.allocate(count);
+        _finish = _start;
+        _end_of_storage = _start + count;
+        for (int i = 0; i < count; i++) {
+            *(_start + i) = value;
+        }
     }
-
+    vector(size_type count)
+    : _allocator(alloc)
+    {
+        _start = _alloc.allocate(count);
+        _finish = _start;
+        _end_of_storage = _start + count;
+        for (int i = 0; i < count; i++) {
+            *(_start + i) = value;
+        }
+    }
+    template< class InputIt >
+    vector( InputIt first, InputIt last, const Allocator& alloc = Allocator() ) 
+    {
+        
+    }
 
 };
 }
