@@ -61,8 +61,15 @@ public:
     template< class InputIt >
     vector( InputIt first, InputIt last, const Allocator& alloc = Allocator() ) 
     {
-        
+
     }
+
+    vector(const vector& other) 
+    {
+
+    }
+
+    
 
 };
 }
