@@ -1,7 +1,6 @@
 namespace ft
 {
 template <class T>
-
 struct reverse_iterator
 {
 

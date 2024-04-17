@@ -1,9 +1,8 @@
 namespace ft 
 {
-template<class T, class allocator>
-	struct 
-	{
-		
-	};
+template<class T>
+struct allocator
+{
 	
+};
 }
