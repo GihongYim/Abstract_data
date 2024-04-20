@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    ft::vector<int> v;
+    ft::vector<int> v(10);
 
     // v.push_back(1);
     // v.push_back(2);
