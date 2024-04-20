@@ -38,9 +38,19 @@ public:
         : _allocator(alloc) 
     {
         _start = _allocator.allocate(count);
+        _end_of_storage = _start + count;
         for (size_type i = 0; i < count; i++)
             *(_start + i) = value;
+    }
+
+    template< class InputIt >
+    vector( InputIt first, InputIt last, const Allocator& alloc = Allocator() )
+        : _allocator(alloc)
+    {
+        _start = _allocator.allocate(count);
         _end_of_storage = _start + count;
+        for (size_type i = 0; i < count; i++)
+            *(_start + i) = value;
     }
 };
 }
