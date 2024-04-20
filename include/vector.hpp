@@ -33,7 +33,16 @@ public:
     }
     vector(const allocator_type& alloc=Allocator())
         : _allocator(alloc), _start(0), _finish(0), _end_of_storage(0) { }
+
+    explicit vector(const Allocator& alloc) 
+        : _allocator(alloc), _start(0), _finish(0), _end_of_storage(0) { }
     
+    explicit vector(size_type count, const T& value, const Allocator& alloc = Allocator())
+        : _allocator(alloc) 
+    {
+        _start = _allocator.allocate(count);
+        _finish = _start + count;
+    }
 };
 }
 
