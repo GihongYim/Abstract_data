@@ -21,6 +21,10 @@ private:
 
 public:
     typedef Category    iterator_category;
-    typedef T           value_type
+    typedef T           value_type;
+    typedef Distance    difference_type;
+    typedef Pointer     pointer;
+    typedef Reference   reference;
+
 };
 }
