@@ -27,7 +27,7 @@ private:
     pointer             _end_of_storage;
 public:
 
-    allocator_type get_allocator() 
+    allocator_type get_allocator() const
     {
         return _allocator;
     }
@@ -60,18 +60,40 @@ public:
     //     _end_of_storage = _finish;
     // }
 
-    vector(const vector& other)
-        : _allocator(other.get_allocator())
+    // vector(const vector<T, Allocator>& other)
+    // {
+    //     _allocator = other.get_allocator();
+    //     size_type size = other.size();
+    //     _start = _allocator.allocate(size);
+    //     _finish = _start;
+    //     for (size_type i = 0; i < size; i++) {
+    //         *_finish = other[i];
+    //         _finish++;
+    //     }
+    //     _end_of_storage = _finish;
+    // }
+    size_type size() const
     {
-        size_type size = other.size();
-        _start = _allocator.allocate(other.size());
-        _finish;
-        for (size_type i = 0; i < size; i++) {
-            *_finish = other[i];
-            _finish++;
-        }
-        _end_of_storage = _finish;
+        return static_cast<size_type>(_finish - _start);
     }
+
+
+    iterator begin() {
+        return iterator(_start);
+    }
+
+    reference operator[] (size_type __n) {
+        return *(begin() + __n);
+    }
+    
+    const_reference operator[] (size_type __n) const {
+        return *(begin() + __n);
+    }
+
+    reference front() {
+        return *begin();
+    }
+
 };
 }
 
