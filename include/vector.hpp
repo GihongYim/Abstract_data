@@ -43,14 +43,34 @@ public:
             *(_start + i) = value;
     }
 
-    template< class InputIt >
-    vector( InputIt first, InputIt last, const Allocator& alloc = Allocator() )
-        : _allocator(alloc)
+    // template< class InputIt >
+    // vector( InputIt first, InputIt last, const Allocator& alloc = Allocator() )
+    //     : _allocator(alloc)
+    // {
+    //     size_type _n = InputIt.distance(first, last);
+    //     size_type index = 0;
+    
+    //     _start = _allocator.allocate(_n);
+    //     while (first != last) {
+    //         *(_start + index) = *first;
+    //         index++;
+    //         first++;
+    //     }
+    //     _finish = _start + _n;
+    //     _end_of_storage = _finish;
+    // }
+
+    vector(const vector& other)
+        : _allocator(other.get_allocator())
     {
-        _start = _allocator.allocate(count);
-        _end_of_storage = _start + count;
-        for (size_type i = 0; i < count; i++)
-            *(_start + i) = value;
+        size_type size = other.size();
+        _start = _allocator.allocate(other.size());
+        _finish;
+        for (size_type i = 0; i < size; i++) {
+            *_finish = other[i];
+            _finish++;
+        }
+        _end_of_storage = _finish;
     }
 };
 }
