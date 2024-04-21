@@ -16,7 +16,7 @@ public:
     typedef const T&                        const_reference;
     typedef T*                              pointer;
     typedef const T*                        const_pointer;
-    typedef ft::iterator<T>                 iterator;
+    typedef ft::iterator<T>                iterator;
     typedef const ft::iterator<T>           const_iterator;
     typedef ft::reverse_iterator<T>         reverse_iterator;
     typedef const ft::reverse_iterator<T>   const_reverse_iterator;
