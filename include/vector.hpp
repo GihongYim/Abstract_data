@@ -4,14 +4,13 @@
 namespace ft
 {
 
-template<class T>
+template<class T, class Allocator>
 class vector_base 
 {
 private:
-
+    typedef Allocator    allocator_type;
 public:
-    typedef std::allocator_traits<T, std::allocator>::allocator_type
-        allocator_type;
+
 protected:
     allocator_type  _allocator;
     T*              _start;
@@ -51,11 +50,11 @@ protected:
     using _base::_end_of_storage;
 public:
     vector(const allocator_type& alloc=Allocator())
-        : _allocator(alloc), _start(0), _finish(0), _end_of_storage(0)
+        : _base(alloc)
     { }
     
     explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator())
-        : _allocator(alloc) 
+        : _base(alloc) 
     {
         _start = _allocator.allocate(count);
         _end_of_storage = _start + count;
