@@ -4,9 +4,32 @@
 namespace ft
 {
 
-template<class T, class Allocator = std::allocator<T> >
-class vector
+template<class T>
+class vector_base 
 {
+private:
+
+public:
+    typedef std::allocator_traits<T, std::allocator>::allocator_type
+        allocator_type;
+protected:
+    allocator_type  _allocator;
+    T*              _start;
+    T*              _finish;
+    T*              _end_of_storage;
+
+    vector_base(const allocator_type& alloc) 
+        : _allocator(alloc), _start(0), _finish(0), _end_of_storage(0)
+    { }
+
+
+};
+
+template<class T, class Allocator = std::allocator<T> >
+class vector : protected vector_base<T, Allocator>
+{
+private:
+    typedef vector_base<T, Allocator>       _base;
 public:
     typedef T                               value_type;
     typedef Allocator                       allocator_type;
@@ -16,23 +39,20 @@ public:
     typedef const T&                        const_reference;
     typedef T*                              pointer;
     typedef const T*                        const_pointer;
-    typedef ft::iterator<T>                 iterator;
-    typedef const ft::iterator<T>           const_iterator;
+    // typedef ft::iterator<T>                 iterator;
+    // typedef const ft::iterator<T>           const_iterator;
     typedef ft::reverse_iterator<T>         reverse_iterator;
     typedef const ft::reverse_iterator<T>   const_reverse_iterator;
-private:
-    allocator_type      _allocator;
-    pointer             _start;
-    pointer             _finish;
-    pointer             _end_of_storage;
+    
+protected:
+    using _base::_allocator;
+    using _base::_start;
+    using _base::_finish;
+    using _base::_end_of_storage;
 public:
-
-    allocator_type get_allocator() const
-    {
-        return _allocator;
-    }
     vector(const allocator_type& alloc=Allocator())
-        : _allocator(alloc), _start(0), _finish(0), _end_of_storage(0) { }
+        : _allocator(alloc), _start(0), _finish(0), _end_of_storage(0)
+    { }
     
     explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator())
         : _allocator(alloc) 
@@ -78,21 +98,21 @@ public:
     }
 
 
-    iterator begin() {
-        return iterator(_start);
-    }
+    // iterator begin() {
+    //     return iterator(_start);
+    // }
 
-    reference operator[] (size_type __n) {
-        return *(begin() + __n);
-    }
+    // reference operator[] (size_type __n) {
+    //     return *(begin() + __n);
+    // }
     
-    const_reference operator[] (size_type __n) const {
-        return *(begin() + __n);
-    }
+    // const_reference operator[] (size_type __n) const {
+    //     return *(begin() + __n);
+    // }
 
-    reference front() {
-        return *begin();
-    }
+    // reference front() {
+    //     return *begin();
+    // }
 
 };
 }
